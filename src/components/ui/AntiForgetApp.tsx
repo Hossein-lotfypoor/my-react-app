@@ -74,29 +74,37 @@ const AntiForgetApp: React.FC = () => {
 
       <div className="max-w-md w-full mx-auto p-4 flex-grow">
         
-        {/* ۲. بخش ورودی یادداشت فوری */}
-        <div className="mb-6 bg-white p-5 rounded-2xl shadow-md border border-yellow-200">
-          <div className="flex justify-between items-center mb-3">
-            <label className="text-sm font-bold text-gray-700">ثبت در نوار متحرک بالا:</label>
-            <button 
-              onClick={clearBanner} 
-              className="text-[10px] bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 transition-colors"
-            >
-              پاکسازی نوار
-            </button>
-          </div>
-          <input 
-            type="text" 
-            placeholder="یادآوری فوری را بنویس و اینتر بزن..."
-            className="w-full p-3 border-2 border-gray-100 rounded-xl focus:border-yellow-400 outline-none transition-all text-sm"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                addToBanner(e.currentTarget.value);
-                e.currentTarget.value = ""; 
-              }
-            }}
-          />
-        </div>
+       {/* ۲. بخش ورودی یادداشت فوری - نسخه موبایل‌پسند */}
+<div className="mb-6 bg-white p-5 rounded-2xl shadow-md border border-yellow-200">
+  <div className="flex justify-between items-center mb-3">
+    <label className="text-sm font-bold text-gray-700">ثبت در نوار متحرک بالا:</label>
+    <button onClick={clearBanner} className="text-[10px] bg-red-500 text-white px-3 py-1 rounded-full">پاکسازی</button>
+  </div>
+  <div className="flex gap-2">
+    <input 
+      id="banner-input"
+      type="text" 
+      placeholder="یادآوری فوری..."
+      className="flex-grow p-3 border-2 border-gray-100 rounded-xl outline-none text-sm"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          addToBanner(e.currentTarget.value);
+          e.currentTarget.value = ""; 
+        }
+      }}
+    />
+    <button 
+      onClick={() => {
+        const el = document.getElementById('banner-input') as HTMLInputElement;
+        addToBanner(el.value);
+        el.value = "";
+      }}
+      className="bg-yellow-400 text-black px-4 py-2 rounded-xl font-bold text-sm shadow-sm"
+    >
+      ثبت
+    </button>
+  </div>
+</div>
 
         {/* ۳. بخش لیست کارهای اصلی */}
         <div className="bg-white p-5 rounded-2xl shadow-md border border-gray-100">
