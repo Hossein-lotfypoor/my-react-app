@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+}
+
+/* برای اینکه فونت‌ها در موبایل درست نمایش داده شوند */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  direction: rtl; /* برای فارسی سازی جهت صفحه */
+}
